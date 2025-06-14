@@ -3,7 +3,9 @@ from app.extensions import db
 from flask_migrate import Migrate
 from config import config
 from .routes import all_blueprints
+from dotenv import load_dotenv
 
+load_dotenv()
 
 # db = SQLAlchemy()
 migrate = Migrate()
