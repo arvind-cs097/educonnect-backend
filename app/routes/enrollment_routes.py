@@ -15,7 +15,7 @@ def enroll_in_course(current_user):
         if not course_id:
             return jsonify({"status": "error", "message": "Course ID is required"}), 400
 
-        course = Course.query.get(course_id)
+        course = db.session.get(Course, course_id)
         if not course:
             return jsonify({"status": "error", "message": "Course not found"}), 404
 
@@ -64,7 +64,7 @@ def get_enrolled_courses(current_user):
 @login_required
 def unenroll_from_course(current_user, course_id):
     try:
-        course = Course.query.get(course_id)
+        course = db.session.get(Course, course_id)
         if not course:
             return jsonify({"status": "error", "message": "Course not found"}), 404
 

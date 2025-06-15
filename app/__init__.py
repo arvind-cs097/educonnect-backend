@@ -3,18 +3,15 @@ from app.extensions import db
 from flask_migrate import Migrate
 from config import config
 from .routes import all_blueprints
-from dotenv import load_dotenv
-
-load_dotenv()
 
 # db = SQLAlchemy()
 migrate = Migrate()
 
-def create_app():
+def create_app(config_class=None):
     app = Flask(__name__)
 
     # Load configuration
-    app.config.from_object(config)
+    app.config.from_object(config_class or config)
 
     # Initialize extensions
     db.init_app(app)

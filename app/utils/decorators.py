@@ -3,6 +3,7 @@ from flask import request, jsonify, current_app
 import jwt
 from app.models import User
 from app.redis_client import redis_client
+from app.extensions import db
 
 def verify_token():
     token = None
@@ -13,7 +14,7 @@ def verify_token():
 
     try:
         payload = jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"])
-        user = User.query.get(payload["user_id"])
+        user = db.session.get(User, payload["user_id"])
         if not user:
             return jsonify({"status": "error", "message": "User not found!"}), 401
     except jwt.ExpiredSignatureError:
