@@ -5,10 +5,9 @@ from werkzeug.security import generate_password_hash
 from app.models import Role
 
 def test_login_success_and_failure(client, setup_roles):
-    # if not db.session.get(Role, 3):
-    # adding role
-    db.session.add(Role(id=3, name="student"))
-    db.session.commit()
+    if not db.session.get(Role, 3):
+        db.session.add(Role(id=3, name="student"))
+        db.session.commit()
         
     # Step 1: Create a test user in DB
     user = User(
