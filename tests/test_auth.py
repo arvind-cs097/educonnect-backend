@@ -24,7 +24,7 @@ def test_login_success_and_failure(client, setup_roles):
         'email': 'test@example.com',
         'password': 'testpass'
     })
-    print("Response", response)  # Debugging line to see the response data
+    print("RESPONSE DATA:", response.get_data(as_text=True))
     assert response.status_code == 200
     data = response.get_json()
     assert 'token' in data

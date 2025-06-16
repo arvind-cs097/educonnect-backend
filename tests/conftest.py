@@ -10,6 +10,8 @@ from werkzeug.security import generate_password_hash
 @pytest.fixture
 def app():
     app = create_app(TestConfig)
+    app.testing = True
+    app.debug = True
 
     with app.app_context():
         db.create_all()
