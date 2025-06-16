@@ -8,7 +8,7 @@ def test_get_users(client, setup_roles):
         name="Sample User",
         email="sample@example.com",
         password=generate_password_hash("password123"),
-        role_id=1  # Assuming Student
+        role_id=3  # Assuming Student
     )
     db.session.add(user)
     db.session.commit()
