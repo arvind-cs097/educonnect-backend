@@ -7,7 +7,6 @@ def generate_token(user_id):
         "user_id": user_id,
         "exp": datetime.now(timezone.utc) + timedelta(hours=1)
     }
-    
+
     SECRET_KEY = current_app.config["SECRET_KEY"]
-    print("Secret Key", SECRET_KEY)
     return jwt.encode(payload, SECRET_KEY, algorithm="HS256")
