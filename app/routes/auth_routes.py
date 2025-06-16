@@ -33,6 +33,7 @@ def login():
                 user.password = generate_password_hash(data['password'])
                 db.session.commit()
 
+        print("Role", user.role.name)
         token = generate_token(user.id)
 
         return jsonify({
