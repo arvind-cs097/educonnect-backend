@@ -1,9 +1,13 @@
 import json
 from app.models import User
 from app.extensions import db
-from werkzeug.security import generate_password_hash
+from app.models import Role
 
 def test_login_success_and_failure(client, setup_roles, student_user):
+    if not Role.query.get(3):
+        db.session.add(Role(id=3, name="student"))
+        db.session.commit()
+
     # Step 1: Successful login
     response = client.post('/api/login', json={
         'email': 'student@example.com',
