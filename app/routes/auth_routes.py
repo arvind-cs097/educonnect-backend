@@ -34,7 +34,11 @@ def login():
                 db.session.commit()
 
         print("Role", user.role.name)
+        print("id", user.id)
+        print("name", user.name)
+        print("email", user.email)
         token = generate_token(user.id)
+        print("token", token)
 
         return jsonify({
             "status": "success",
